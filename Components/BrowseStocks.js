@@ -1,23 +1,52 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { Input, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+    return {
+        search: state.search
+    };
+};
 
 class BrowseScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            search: ""
+        };
+    }
+
+    updateSearch = (search) => {
+        this.setState({search});
+    };
+
+    onSubmitSearch = () => {
+        
+    };
 
     render() {
         return(
-            <View style={styles.center}>
-                <Text>This is where you can view stocks.</Text>
+            <View>
+                <Input
+                    placeholder="Search Stocks..."
+                    leftIcon={<Icon name="search-circle-outline" type="ionicon" />}
+                    value={this.state.search}
+                    onChangeText={this.updateSearch}
+                    onSubmitEditing={this.onSubmitSearch}
+                />
+                <ScrollView>
+                    {this.props.search.errMess && <Text style={styles.errorText}>{this.props.search.errMess}</Text>}
+                </ScrollView>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    center: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center"
+    errorText: {
+        textAlign: "center"
     }
 });
 
-export default BrowseScreen;
+export default connect(mapStateToProps)(BrowseScreen);
