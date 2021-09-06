@@ -1,1 +1,4 @@
 export const SEARCH_QUERY = "SEARCH_QUERY";
+export const SEARCH_LOADING = "SEARCH_LOADING";
+export const SEARCH_UPDATE = "SEARCH_UPDATE";
+export const SEARCH_ERROR = "SEARCH_ERROR";
