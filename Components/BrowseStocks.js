@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, FlatList } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import { searchQuery } from '../redux/ActionCreators';
+import CompanyInfoSmall from './CompanyInfoSmall';
 
 const mapStateToProps = state => {
     return {
@@ -28,6 +29,10 @@ class BrowseScreen extends Component {
     };
 
     render() {
+        const renderStockInfo = ({item}) => {
+            return <CompanyInfoSmall stock={item} />;
+        };
+
         return(
             <View>
                 <Input
@@ -37,11 +42,20 @@ class BrowseScreen extends Component {
                     onChangeText={this.updateSearch}
                     onSubmitEditing={() => this.props.searchQuery(this.state.search)}
                 />
-                <ScrollView>
-                    {this.props.search.errMess && <Text style={styles.errorText}>{this.props.search.errMess}</Text>}
-                    {this.props.search.isLoading && <Loading />}
-                    {this.props.search.stocks && <Text>{JSON.stringify(this.props.search.stocks)}</Text>}
-                </ScrollView>
+                <FlatList
+                    data={this.props.search.stocks}
+                    renderItem={renderStockInfo}
+                    keyExtractor={item => item.symbol.toString()}
+                    ListHeaderComponent={
+                        <>
+                            <ScrollView>
+                                {this.props.search.errMess && <Text style={styles.errorText}>{this.props.search.errMess}</Text>}
+                                {this.props.search.isLoading && <Loading />}
+                            </ScrollView>
+                        </>
+                    }
+                />
+                
             </View>
         );
     }
