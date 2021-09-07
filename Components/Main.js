@@ -1,43 +1,46 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon } from 'react-native-elements';
 import PortfolioScreen from './Portfolio';
 import BrowseScreen from './BrowseStocks';
+import ViewStockPage from './ViewStockPage';
 
-const Tabs = createBottomTabNavigator();
+const MainStack = createNativeStackNavigator();
 
 export default function Main() {
     return (
         <NavigationContainer>
-            <Tabs.Navigator
-                initialRouteName="Portfolio"
-                screenOptions={({ route }) => ({
-                    tabBarIcon: ({ focused, color, size }) => {
-                        let iconName;
-
-                        if (route.name === "Portfolio") {
-                            iconName = focused ? "bar-chart" : "bar-chart-outline";
-                        } else if (route.name === "Browse") {
-                            iconName = focused ? "search" : "search-outline";
-                        }
-
-                        return <Icon name={iconName} type="ionicon" color={color} size={size} />
-                    }
-                })}
-            >
-                <Tabs.Screen name="Portfolio" component={PortfolioScreen} />
-                <Tabs.Screen name="Browse" component={BrowseScreen} />
-            </Tabs.Navigator>
+            <MainStack.Navigator>
+                <MainStack.Screen name="Home" component={TabNavigation} options={{ headerShown: false }} />
+                <MainStack.Screen name="View Stock" component={ViewStockPage} />
+            </MainStack.Navigator>
         </NavigationContainer>
     );
 }
 
-const styles = StyleSheet.create({
-    center: {
-        alignItems: "center",
-        justifyContent: "center",
-        flex: 1
-    }
-});
+const Tabs = createBottomTabNavigator();
+
+function TabNavigation() {
+    return (
+        <Tabs.Navigator
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
+
+                    if (route.name === "Portfolio") {
+                        iconName = focused ? "bar-chart" : "bar-chart-outline";
+                    } else if (route.name === "Browse") {
+                        iconName = focused ? "search" : "search-outline";
+                    }
+
+                    return <Icon name={iconName} type="ionicon" color={color} size={size} />
+                }
+            })}
+        >
+            <Tabs.Screen name="Portfolio" component={PortfolioScreen} />
+            <Tabs.Screen name="Browse" component={BrowseScreen} />
+        </Tabs.Navigator>
+    );
+}

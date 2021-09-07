@@ -7,8 +7,10 @@ class CompanyInfoSmall extends Component {
     }
 
     render() {
+        const { navigation } = this.props;
+
         return (
-            <View style={styles.container}>
+            <View style={styles.container} onStartShouldSetResponder={() => navigation.navigate("View Stock", {symbol: this.props.stock.symbol})}>
                 <Text>Info</Text>
                 <Text>{this.props.stock.symbol}</Text>
                 <Text>{this.props.stock.name}</Text>

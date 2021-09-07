@@ -30,7 +30,7 @@ class BrowseScreen extends Component {
 
     render() {
         const renderStockInfo = ({item}) => {
-            return <CompanyInfoSmall stock={item} />;
+            return <CompanyInfoSmall stock={item} navigation={this.props.navigation} />;
         };
 
         return(
