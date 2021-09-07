@@ -1,13 +1,34 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import Loading from './Loading';
+import { updateProfile } from '../redux/ActionCreators';
+
+const mapStateToProps = state => {
+    return {
+        cache: state.cache
+    };
+};
+
+const mapDispatchToProps = {
+    updateProfile: symbol => updateProfile(symbol)
+};
 
 class CompanyInfoSmall extends Component {
     constructor(props) {
         super(props);
     }
 
+    componentDidMount() {
+        if (!profile) {
+            this.props.updateProfile(this.props.stock.symbol);
+        }
+    }
+
     render() {
         const { navigation } = this.props;
+
+        const profile = this.props.cache.profiles.filter(profile => profile.symbol === this.props.stock.symbol)[0];
 
         return (
             <View
@@ -19,7 +40,8 @@ class CompanyInfoSmall extends Component {
                     <Text style={styles.nameText}>{this.props.stock.name}</Text>
                 </View>
                 <View style={styles.statsContainer}>
-                    <Text>Hi</Text>
+                    {profile && <Text>Price Info Here</Text>}
+                    {!profile && <Loading showText={false} />}
                 </View>
             </View>
         );
@@ -28,7 +50,7 @@ class CompanyInfoSmall extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#FF0000",
+        backgroundColor: "#AAAAAA",
         margin: 5,
         padding: 5,
         flexDirection: "row",
@@ -42,14 +64,12 @@ const styles = StyleSheet.create({
     },
     nameContainer: {
         flex: 2,
-        backgroundColor: "#00FF00",
     },
     statsContainer: {
         flex: 1,
-        backgroundColor: "#0000FF",
         justifyContent: "center",
         alignItems: "flex-end",
     },
 });
 
-export default CompanyInfoSmall;
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyInfoSmall);

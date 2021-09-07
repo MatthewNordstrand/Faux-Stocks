@@ -1,11 +1,11 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
-function Loading() {
+function Loading({showText = true}) {
     return (
         <View style={styles.container}>
             <ActivityIndicator size="large" color="#000" />
-            <Text style={styles.loadingText}>Loading...</Text>
+            {showText && <Text style={styles.loadingText}>Loading...</Text>}
         </View>
     );
 }
