@@ -10,7 +10,7 @@ class CompanyInfoSmall extends Component {
         const { navigation } = this.props;
 
         return (
-            <View style={styles.container} onStartShouldSetResponder={() => navigation.navigate("View Stock", {symbol: this.props.stock.symbol})}>
+            <View style={styles.container} onStartShouldSetResponder={() => navigation.navigate("View Stock", {symbol: this.props.stock.symbol, stockName: this.props.stock.name})}>
                 <Text>Info</Text>
                 <Text>{this.props.stock.symbol}</Text>
                 <Text>{this.props.stock.name}</Text>

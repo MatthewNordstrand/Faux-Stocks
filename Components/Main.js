@@ -14,7 +14,7 @@ export default function Main() {
         <NavigationContainer>
             <MainStack.Navigator>
                 <MainStack.Screen name="Home" component={TabNavigation} options={{ headerShown: false }} />
-                <MainStack.Screen name="View Stock" component={ViewStockPage} />
+                <MainStack.Screen name="View Stock" component={ViewStockPage} options={({ route }) => ({ title: route.params.stockName })} />
             </MainStack.Navigator>
         </NavigationContainer>
     );
