@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import { updateProfile } from '../redux/ActionCreators';
@@ -42,7 +43,17 @@ class CompanyInfoSmall extends Component {
                     <Text style={styles.nameText}>{this.props.stock.name}</Text>
                 </View>
                 <View style={styles.statsContainer}>
-                    {profile && <Text style={styles.priceText}>{profile.price}</Text>}
+                    {profile &&
+                        <>
+                            <Icon
+                                type="ionicon"
+                                name={profile.changes >= 0 ? "caret-up" : "caret-down"}
+                                color={profile.changes >= 0 ? "#00FF00" : "#FF0000"}
+                                size={20}
+                            />
+                            <Text style={styles.priceText}>{profile.price}</Text>
+                        </>
+                    }
                     {!profile && <Loading showText={false} />}
                 </View>
             </TouchableOpacity>
@@ -69,8 +80,9 @@ const styles = StyleSheet.create({
     },
     statsContainer: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "flex-end",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        flexDirection: "row",
     },
     priceText: {
         fontSize: 18,
