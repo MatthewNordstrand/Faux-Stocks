@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { Image } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
@@ -25,7 +25,7 @@ function ViewStockPage(props) {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.profileDescContainer}>
                 <Text style={styles.profileDescTitle}>More about {symbol}</Text>
                 <View style={styles.profileStatWrapper}>
@@ -37,7 +37,7 @@ function ViewStockPage(props) {
                 </View>
                 <Text style={styles.description}>{profile.description}</Text>
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     statDesc: {
         fontWeight: "normal",
         fontSize: 12,
+        textAlign: "right",
     },
     statText: {
         fontWeight: "bold",
