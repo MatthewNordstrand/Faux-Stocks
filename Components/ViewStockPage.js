@@ -27,7 +27,7 @@ function ViewStockPage(props) {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.profileDescContainer}>
-                <Text style={styles.profileDescTitle}>More about {symbol}</Text>
+                <Text style={styles.profileDescTitle}>About {symbol}</Text>
                 <View style={styles.profileStatWrapper}>
                     <Image style={styles.image} source={{ uri: profile.image }} />
                     <View style={styles.statsContainer}>
