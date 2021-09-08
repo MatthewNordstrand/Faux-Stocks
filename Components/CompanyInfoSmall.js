@@ -51,7 +51,7 @@ class CompanyInfoSmall extends Component {
                                 color={profile.changes >= 0 ? "#00FF00" : "#FF0000"}
                                 size={20}
                             />
-                            <Text style={styles.priceText}>{profile.price}</Text>
+                            <Text style={profile.changes >= 0 ? styles.priceTextUp : styles.priceTextDown}>{profile.price}</Text>
                         </>
                     }
                     {!profile && <Loading showText={false} />}
@@ -63,7 +63,7 @@ class CompanyInfoSmall extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#AAAAAA",
+        backgroundColor: "#C6C6C6",
         margin: 5,
         padding: 5,
         flexDirection: "row",
@@ -84,9 +84,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
     },
-    priceText: {
+    priceTextUp: {
         fontSize: 18,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: "#00FF00",
+    },
+    priceTextDown: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#FF0000",
     },
 });
 
