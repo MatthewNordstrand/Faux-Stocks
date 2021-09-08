@@ -58,7 +58,7 @@ export const updateProfile = symbol => dispatch => {
             throw errMess;
         })
     .then(response => response.json())
-    .then(profile => dispatch(addProfile(profile)))
+    .then(profile => dispatch(addProfile(profile[0])))
     .catch(error => console.log(`ERROR(updateProfile): ${error.message}`));
 };
 

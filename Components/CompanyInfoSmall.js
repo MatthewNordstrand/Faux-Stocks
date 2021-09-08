@@ -20,6 +20,8 @@ class CompanyInfoSmall extends Component {
     }
 
     componentDidMount() {
+        const profile = this.props.cache.profiles.filter(profile => profile.symbol === this.props.stock.symbol)[0];
+
         if (!profile) {
             this.props.updateProfile(this.props.stock.symbol);
         }
