@@ -35,7 +35,9 @@ class CompanyInfoSmall extends Component {
 
         return (
             <TouchableOpacity
-                style={styles.container}
+                style={
+                    profile ? (profile.changes >= 0 ? styles.containerGreen : styles.containerRed) : styles.container
+                }
                 onPress={() => navigation.navigate("View Stock", {symbol: this.props.stock.symbol, stockName: this.props.stock.name})}
             >
                 <View style={styles.nameContainer}>
@@ -63,7 +65,19 @@ class CompanyInfoSmall extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#C6C6C6",
+        backgroundColor: "#FFFFFF",
+        margin: 5,
+        padding: 5,
+        flexDirection: "row",
+    },
+    containerGreen: {
+        backgroundColor: "#BFFFBF",
+        margin: 5,
+        padding: 5,
+        flexDirection: "row",
+    },
+    containerRed: {
+        backgroundColor: "#FFBFBF",
         margin: 5,
         padding: 5,
         flexDirection: "row",
