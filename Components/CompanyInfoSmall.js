@@ -50,7 +50,7 @@ class CompanyInfoSmall extends Component {
                             <Icon
                                 type="ionicon"
                                 name={profile.changes >= 0 ? "caret-up" : "caret-down"}
-                                color={profile.changes >= 0 ? "#00FF00" : "#FF0000"}
+                                color={profile.changes >= 0 ? "#00DD00" : "#DD0000"}
                                 size={20}
                             />
                             <Text style={profile.changes >= 0 ? styles.priceTextUp : styles.priceTextDown}>{profile.price}</Text>
@@ -101,12 +101,12 @@ const styles = StyleSheet.create({
     priceTextUp: {
         fontSize: 18,
         fontWeight: "bold",
-        color: "#00FF00",
+        color: "#00DD00",
     },
     priceTextDown: {
         fontSize: 18,
         fontWeight: "bold",
-        color: "#FF0000",
+        color: "#DD0000",
     },
 });
 
