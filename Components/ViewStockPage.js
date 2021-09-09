@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     profileDescContainer: {
         width: "95%",
-        backgroundColor: "#808080",
+        backgroundColor: "#DADDE2",
         alignSelf: "center",
         borderColor: "#000",
         borderWidth: 2,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: "bold",
         fontSize: 18,
-        backgroundColor: "#B0B0B0",
+        backgroundColor: "#B1BDC5",
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
     },
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     image: {
         width: 75,
         height: 75,
-        borderRadius: 20,
+        borderRadius: 5,
     },
     statsContainer: {
         justifyContent: "center",
