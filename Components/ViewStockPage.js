@@ -26,6 +26,9 @@ function ViewStockPage(props) {
 
     return (
         <ScrollView style={styles.container}>
+            <View>
+                
+            </View>
             <View style={styles.profileDescContainer}>
                 <Text style={styles.profileDescTitle}>About {symbol}</Text>
                 <View style={styles.profileStatWrapper}>
@@ -45,6 +48,7 @@ function ViewStockPage(props) {
 }
 
 const styles = StyleSheet.create({
+    //Global
     loadingContainer: {
         alignItems: "center",
         flex: 1,
@@ -52,6 +56,8 @@ const styles = StyleSheet.create({
     container: {
         padding: 5,
     },
+
+    //Bio Styles
     profileDescContainer: {
         width: "95%",
         backgroundColor: "#DADDE2",
