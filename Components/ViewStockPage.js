@@ -27,6 +27,7 @@ function ViewStockPage(props) {
 
     return (
         <ScrollView style={styles.container}>
+            {/*Price Info*/}
             <View style={styles.innerContainer}>
                 <View style={styles.contentContainer}>
                     <Text style={styles.largeSymbol}>{profile.symbol}</Text>
@@ -44,6 +45,23 @@ function ViewStockPage(props) {
                     </View>
                 </View>
             </View>
+
+            {/*Stock Trading*/}
+            <View style={styles.innerContainer}>
+                <Text style={styles.title}>Trade {profile.symbol}</Text>
+                {!profile.isActivelyTrading &&
+                    <View style={styles.contentContainer}>
+                        <Text style={styles.descNotTraded}>{profile.companyName} is not being actively traded.</Text>
+                    </View>
+                }
+                {profile.isActivelyTrading &&
+                    <View style={styles.contentContainer}>
+                        
+                    </View>
+                }
+            </View>
+
+            {/*Stock Bio*/}
             <View style={styles.innerContainer}>
                 <Text style={styles.title}>About {symbol}</Text>
                 <View style={styles.contentContainer}>
@@ -110,6 +128,10 @@ const styles = StyleSheet.create({
         fontSize: 14,
         alignContent: "center",
         marginLeft: 10,
+    },
+    descNotTraded: {
+        backgroundColor: "red",
+        textAlign: "center",
     },
 
     //Bio Styles
