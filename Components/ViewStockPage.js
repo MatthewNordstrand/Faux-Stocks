@@ -36,6 +36,8 @@ function ViewStockPage(props) {
                     </View>
                 </View>
                 <Text style={styles.description}>{profile.description}</Text>
+                <Text style={styles.addressTop}>{profile.address}</Text>
+                <Text style={styles.addressBottom}>{profile.city}, {profile.state} {profile.zip}</Text>
             </View>
         </ScrollView>
     );
@@ -91,6 +93,18 @@ const styles = StyleSheet.create({
     description: {
         padding: 10,
     },
+    addressTop: {
+        fontStyle: "italic",
+        fontSize: 12,
+        padding: 10,
+        paddingBottom: 0,
+    },
+    addressBottom: {
+        fontStyle: "italic",
+        fontSize: 12,
+        padding: 10,
+        paddingTop: 0,
+    }
 });
 
 export default connect(mapStateToProps)(ViewStockPage);
