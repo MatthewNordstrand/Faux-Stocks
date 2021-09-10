@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
-import { Image } from 'react-native-elements';
+import { Image, Input, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import { Icon } from 'react-native-elements';
@@ -14,6 +14,8 @@ const mapStateToProps = state => {
 function ViewStockPage(props) {
     const {route, navigation} = props;
     const { symbol } = route.params;
+
+    const [shares, setShares] = useState(0);
 
     const profile = props.cache.profiles.filter(profile => profile.symbol === symbol)[0];
 
@@ -56,7 +58,26 @@ function ViewStockPage(props) {
                 }
                 {profile.isActivelyTrading &&
                     <View style={styles.contentContainer}>
-                        
+                        <Input
+                            style={styles.tradeComponent}
+                            label="Number of Shares"
+                            keyboardType= "numeric"
+                            value={shares.toString()}
+                        />
+                        <View style={styles.tradeButtonContainer}>
+                            <View style={styles.tradeComponentContainer}>
+                                <Button
+                                    style={styles.tradeComponent}
+                                    title="Buy"
+                                />
+                            </View>
+                            <View style={styles.tradeComponentContainer}>
+                                <Button
+                                    style={styles.tradeComponent}
+                                    title="Sell"
+                                />
+                            </View>
+                        </View>
                     </View>
                 }
             </View>
@@ -132,6 +153,15 @@ const styles = StyleSheet.create({
     descNotTraded: {
         backgroundColor: "red",
         textAlign: "center",
+    },
+
+    //Trasing Panel
+    tradeButtonContainer: {
+        flexDirection: "row",
+    },
+    tradeComponentContainer: {
+        flex: 1,
+        margin: 2,
     },
 
     //Bio Styles
