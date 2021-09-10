@@ -63,6 +63,7 @@ function ViewStockPage(props) {
                             label="Number of Shares"
                             keyboardType= "numeric"
                             value={shares.toString()}
+                            onChangeText={value => setShares(+value.replace(/[^0-9]/g, ''))}
                         />
                         <View style={styles.tradeButtonContainer}>
                             <View style={styles.tradeComponentContainer}>
