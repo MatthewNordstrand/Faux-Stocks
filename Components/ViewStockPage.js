@@ -58,6 +58,8 @@ function ViewStockPage(props) {
                 }
                 {profile.isActivelyTrading &&
                     <View style={styles.contentContainer}>
+                        <Text style={styles.currentOwnership}>Currently own: 0 ($0)</Text>
+                        <Text style={styles.currentOwnership}>Profit: $0</Text>
                         <Input
                             style={styles.tradeComponent}
                             label="Number of Shares"
@@ -163,6 +165,9 @@ const styles = StyleSheet.create({
     tradeComponentContainer: {
         flex: 1,
         margin: 2,
+    },
+    currentOwnership: {
+        textAlign: "center",
     },
 
     //Bio Styles
