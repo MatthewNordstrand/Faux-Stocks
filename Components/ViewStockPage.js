@@ -33,6 +33,7 @@ function ViewStockPage(props) {
                     <View style={styles.statsContainer}>
                         <Text style={styles.statDesc}>CEO <Text style={styles.statText}>{profile.ceo}</Text></Text>
                         <Text style={styles.statDesc}>Industry <Text style={styles.statText}>{profile.industry}</Text></Text>
+                        <Text style={styles.statDesc}>Sector <Text style={styles.statText}>{profile.sector}</Text></Text>
                     </View>
                 </View>
                 <Text style={styles.description}>{profile.description}</Text>
