@@ -4,9 +4,11 @@ import { Image, Input, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import { Icon } from 'react-native-elements';
+import { portfolio } from '../redux/portfolio';
 
 const mapStateToProps = state => {
     return {
+        portfolio: state.portfolio,
         cache: state.cache
     };
 };
@@ -67,6 +69,7 @@ function ViewStockPage(props) {
                             value={shares.toString()}
                             onChangeText={value => setShares(+value.replace(/[^0-9]/g, ''))}
                         />
+                        <Text style={styles.currentOwnership}>Value: ${shares * profile.price}</Text>
                         <View style={styles.tradeButtonContainer}>
                             <View style={styles.tradeComponentContainer}>
                                 <Button
@@ -81,6 +84,7 @@ function ViewStockPage(props) {
                                 />
                             </View>
                         </View>
+                        <Text style={styles.currentOwnership}>Buying Power: ${props.portfolio.money}</Text>
                     </View>
                 }
             </View>
