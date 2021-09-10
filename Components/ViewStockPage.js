@@ -37,7 +37,7 @@ function ViewStockPage(props) {
                 </View>
                 <Text style={styles.description}>{profile.description}</Text>
                 <Text style={styles.addressTop}>{profile.address}</Text>
-                <Text style={styles.addressBottom}>{profile.city}, {profile.state} {profile.zip}</Text>
+                <Text style={styles.addressBottom}>{profile.city}, {profile.state.charAt(0).toUpperCase()}{profile.state.slice(1).toLowerCase()} {profile.zip}</Text>
             </View>
         </ScrollView>
     );
