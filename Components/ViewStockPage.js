@@ -3,6 +3,7 @@ import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { Image } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
+import { Icon } from 'react-native-elements';
 
 const mapStateToProps = state => {
     return {
@@ -26,29 +27,45 @@ function ViewStockPage(props) {
 
     return (
         <ScrollView style={styles.container}>
-            <View>
-                
-            </View>
-            <View style={styles.profileDescContainer}>
-                <Text style={styles.profileDescTitle}>About {symbol}</Text>
-                <View style={styles.profileStatWrapper}>
-                    <Image style={styles.image} source={{ uri: profile.image }} />
-                    <View style={styles.statsContainer}>
-                        <Text style={styles.statDesc}>CEO <Text style={styles.statText}>{profile.ceo}</Text></Text>
-                        <Text style={styles.statDesc}>Industry <Text style={styles.statText}>{profile.industry}</Text></Text>
-                        <Text style={styles.statDesc}>Sector <Text style={styles.statText}>{profile.sector}</Text></Text>
+            <View style={styles.innerContainer}>
+                <View style={styles.contentContainer}>
+                    <Text style={styles.largeSymbol}>{profile.symbol}</Text>
+                    <View style={styles.priceContainer}>
+                        <Text style={styles.price}>${profile.price}</Text>
+                        <Text style={styles.changes}>
+                                <Icon
+                                    type="ionicon"
+                                    name={profile.changes >= 0 ? "caret-up" : "caret-down"}
+                                    color={profile.changes >= 0 ? "#00DD00" : "#DD0000"}
+                                    size={14}
+                                />
+                                {Math.abs(profile.changes.toFixed(2))}
+                            </Text>
                     </View>
                 </View>
-                <Text style={styles.description}>{profile.description}</Text>
-                <Text style={styles.addressTop}>{profile.address}</Text>
-                <Text style={styles.addressBottom}>{profile.city}, {profile.state.charAt(0).toUpperCase()}{profile.state.slice(1).toLowerCase()} {profile.zip}</Text>
+            </View>
+            <View style={styles.innerContainer}>
+                <Text style={styles.title}>About {symbol}</Text>
+                <View style={styles.contentContainer}>
+                    <View style={styles.profileStatWrapper}>
+                        <Image style={styles.image} source={{ uri: profile.image }} />
+                        <View style={styles.statsContainer}>
+                            <Text style={styles.statDesc}>CEO <Text style={styles.statText}>{profile.ceo}</Text></Text>
+                            <Text style={styles.statDesc}>Industry <Text style={styles.statText}>{profile.industry}</Text></Text>
+                            <Text style={styles.statDesc}>Sector <Text style={styles.statText}>{profile.sector}</Text></Text>
+                        </View>
+                    </View>
+                    <Text style={styles.description}>{profile.description}</Text>
+                    <Text style={styles.addressTop}>{profile.address}</Text>
+                    <Text style={styles.addressBottom}>{profile.city}, {profile.state.charAt(0).toUpperCase()}{profile.state.slice(1).toLowerCase()} {profile.zip}</Text>
+                </View>
             </View>
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    //Global
+    //Global Styles
     loadingContainer: {
         alignItems: "center",
         flex: 1,
@@ -56,17 +73,19 @@ const styles = StyleSheet.create({
     container: {
         padding: 5,
     },
-
-    //Bio Styles
-    profileDescContainer: {
+    innerContainer: {
         width: "95%",
+        marginBottom: 10,
         backgroundColor: "#DADDE2",
         alignSelf: "center",
         borderColor: "#000",
         borderWidth: 2,
         borderRadius: 20,
     },
-    profileDescTitle: {
+    contentContainer: {
+        padding: 5,
+    },
+    title: {
         textAlign: "center",
         fontWeight: "bold",
         fontSize: 18,
@@ -74,6 +93,26 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
     },
+
+    //Stock Detail Styles
+    largeSymbol: {
+        fontSize: 48,
+        fontWeight: "bold",
+    },
+    priceContainer: {
+        flexDirection: "row",
+    },
+    price: {
+        fontSize: 32,
+        marginLeft: 10,
+    },
+    changes: {
+        fontSize: 14,
+        alignContent: "center",
+        marginLeft: 10,
+    },
+
+    //Bio Styles
     profileStatWrapper: {
         padding: 5,
         flexDirection: "row",
@@ -98,7 +137,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     description: {
-        padding: 10,
+        paddingVertical: 10,
     },
     addressTop: {
         fontStyle: "italic",
