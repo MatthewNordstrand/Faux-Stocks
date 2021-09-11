@@ -61,15 +61,14 @@ function ViewStockPage(props) {
                 {profile.isActivelyTrading &&
                     <View style={styles.contentContainer}>
                         <Text style={styles.currentOwnership}>Currently own: 0 ($0)</Text>
-                        <Text style={styles.currentOwnership}>Profit: $0</Text>
+                        <Text style={styles.currentOwnership}>Current Profit: $0</Text>
                         <Input
                             style={styles.tradeComponent}
-                            label="Number of Shares"
+                            label={`Number of Shares (Value: $${shares * profile.price})`}
                             keyboardType= "numeric"
                             value={shares.toString()}
                             onChangeText={value => setShares(+value.replace(/[^0-9]/g, ''))}
                         />
-                        <Text style={styles.currentOwnership}>Value: ${shares * profile.price}</Text>
                         <View style={styles.tradeButtonContainer}>
                             <View style={styles.tradeComponentContainer}>
                                 <Button
@@ -102,8 +101,9 @@ function ViewStockPage(props) {
                         </View>
                     </View>
                     <Text style={styles.description}>{profile.description}</Text>
-                    <Text style={styles.addressTop}>{profile.address}</Text>
-                    <Text style={styles.addressBottom}>{profile.city}, {profile.state.charAt(0).toUpperCase()}{profile.state.slice(1).toLowerCase()} {profile.zip}</Text>
+                    <Text style={styles.address}>{profile.companyName}</Text>
+                    <Text style={styles.address}>{profile.address}</Text>
+                    <Text style={styles.address}>{profile.city}, {profile.state.charAt(0).toUpperCase()}{profile.state.slice(1).toLowerCase()} {profile.zip}</Text>
                 </View>
             </View>
         </ScrollView>
@@ -201,18 +201,11 @@ const styles = StyleSheet.create({
     description: {
         paddingVertical: 10,
     },
-    addressTop: {
+    address: {
         fontStyle: "italic",
         fontSize: 12,
-        padding: 10,
-        paddingBottom: 0,
+        paddingLeft: 10,
     },
-    addressBottom: {
-        fontStyle: "italic",
-        fontSize: 12,
-        padding: 10,
-        paddingTop: 0,
-    }
 });
 
 export default connect(mapStateToProps)(ViewStockPage);
