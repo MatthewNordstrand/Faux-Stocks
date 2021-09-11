@@ -166,7 +166,7 @@ function ViewStockPage(props) {
                         }
                         <Input
                             style={styles.tradeComponent}
-                            label={`Number of Shares (Value: $${shares * profile.price})`}
+                            label={`Number of Shares (Value: $${(shares * profile.price).toFixed(2)})`}
                             keyboardType= "numeric"
                             value={shares.toString()}
                             onChangeText={value => setShares(+value.replace(/[^0-9]/g, ''))}
