@@ -89,18 +89,18 @@ const styles = StyleSheet.create({
     },
     statText: {
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: 24,
     },
     statTextGreen: {
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: 24,
         color: "#00FF00",
         textShadowColor: "#000",
         textShadowRadius: 5
     },
     statTextRed: {
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: 24,
         color: "#FF0000",
         textShadowColor: "#000",
         textShadowRadius: 5
