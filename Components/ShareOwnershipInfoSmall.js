@@ -68,7 +68,7 @@ class ShareOwnershipInfoSmall extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#BFBFFF",
         margin: 5,
         paddingHorizontal: 5,
         flexDirection: "row",
