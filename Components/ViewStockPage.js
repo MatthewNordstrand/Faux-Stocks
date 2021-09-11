@@ -72,7 +72,7 @@ function ViewStockPage(props) {
                 }
                 {profile.isActivelyTrading &&
                     <View style={styles.contentContainer}>
-                        <Text style={styles.currentOwnership}>Currently own: {ownedStock.amount} (${(ownedStock.amount * profile.price).toFixed(2)})</Text>
+                        <Text style={styles.currentOwnership}>Currently Own: {ownedStock.amount} (${(ownedStock.amount * profile.price).toFixed(2)})</Text>
                         {profit >= 0 &&
                             <Text style={styles.currentOwnership}>Current Profit: ${profit.toFixed(2)}</Text>
                         }

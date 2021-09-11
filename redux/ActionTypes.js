@@ -10,3 +10,6 @@ export const CACHE_STOCK_FAILED = "CACHE_STOCK_FAILED";
 export const CACHE_UPDATE_PROFILE = "CACHE_UPDATE_PROFILE"; //Called from the reducer to get company profile data from API
 export const CACHE_ADD_PROFILE = "CACHE_ADD_PROFILE"; //Called when the profile data returns from the API
 export const CACHE_PROFILE_FAILED = "CACHE_PROFILE_FAILED";
+
+export const PROFILE_STOCK_BUY = "PROFILE_STOCK_BUY";
+export const PROFILE_STOCK_SELL = "PROFILE_STOCK_SELL";
