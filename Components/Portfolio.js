@@ -55,7 +55,7 @@ class PortfolioScreen extends Component {
                 </View>
                 <View style={styles.innerContainer}>
                         <Text style={styles.title}>Your Shares</Text>
-                        <View style={styles.contentContainer}>
+                        <View style={styles.sharesContentContainer}>
                             {this.props.portfolio.stocks.length === 0 &&
                                 <Text style={styles.textInfo}>You currently don't own any shares.</Text>
                             }
@@ -81,6 +81,10 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         padding: 5,
+    },
+    sharesContentContainer: {
+        padding: 5,
+        flexGrow: 1,
     },
     title: {
         textAlign: "center",
