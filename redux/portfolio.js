@@ -12,6 +12,6 @@ export const portfolio = (state = { money: 25000, stocks: [] }, action) => {
     {
         symbol,
         amount, (of stocks owned)
-        moneySpent, (on stocks)
+        cost, (money spent on these stocks)
     }
 */

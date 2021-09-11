@@ -66,3 +66,21 @@ export const addProfile = profileData => ({
     type: ActionTypes.CACHE_ADD_PROFILE,
     payload: profileData
 });
+
+export const buyStock = (symbol, count, price) => ({
+    type: ActionTypes.PROFILE_STOCK_BUY,
+    payload: {
+        symbol,
+        count,
+        price
+    }
+});
+
+export const sellStock = (symbol, count, price) => ({
+    type: ActionTypes.PROFILE_STOCK_SELL,
+    payload: {
+        symbol,
+        count,
+        price
+    }
+});
