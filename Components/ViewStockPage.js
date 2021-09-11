@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, Alert } from 'react-native';
 import { Image, Input, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import { Icon } from 'react-native-elements';
-import { portfolio } from '../redux/portfolio';
+import { buyStock, sellStock } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
         portfolio: state.portfolio,
         cache: state.cache
     };
+};
+
+const mapDispatchToProps = {
+    buyStock: (symbol, count, price) => buyStock(symbol, count, price),
+    sellStock: (symbol, count, price) => sellStock(symbol, count, price)
 };
 
 function ViewStockPage(props) {
@@ -39,6 +44,86 @@ function ViewStockPage(props) {
                 <Loading />
             </View>
         );
+    }
+
+    const buyStockButton = () => {
+        const buyCost = shares * profile.price;
+
+        if (shares === 0) return;
+
+        if (buyCost > props.portfolio.money) {
+            Alert.alert(
+                "Not Enough Buying Power",
+                `You don't have enough buying power to buy ${shares} stocks. You have $${props.portfolio.money} and you need $${buyCost}.`,
+                [
+                    {
+                        text: "Ok"
+                    }
+                ],
+                { cancelable: false }
+            );
+
+            return;
+        }
+
+        Alert.alert(
+            "Buy Stock?",
+            `Are you sure you want to buy ${shares} shares of ${symbol} for $${buyCost}?`,
+            [
+                {
+                    text: "Yes",
+                    onPress: () => {
+                        props.buyStock(symbol, shares, buyCost);
+                        resetForm();
+                    }
+                },
+                {
+                    text: "No"
+                }
+            ],
+            { cancelable: false }
+        );
+    }
+
+    const sellStockButton = () => {
+        const sellCost = shares * profile.price;
+
+        if (shares === 0) return;
+
+        if (ownedStock.amount < shares) {
+            Alert.alert(
+                "Not Enough Shares",
+                `You don't have enough shares of ${symbol} to sell ${shares}. You have ${ownedStock.amount}.`,
+                [
+                    {
+                        text: "Ok"
+                    }
+                ],
+                { cancelable: false }
+            );
+        }
+
+        Alert.alert(
+            "Sell Stock?",
+            `Are you sure you want to sell ${shares} shares of ${symbol} for $${sellCost}?`,
+            [
+                {
+                    text: "Yes",
+                    onPress: () => {
+                        props.sellStock(symbol, shares, sellCost);
+                        resetForm();
+                    }
+                },
+                {
+                    text: "No"
+                }
+            ],
+            { cancelable: false }
+        );
+    }
+
+    const resetForm = () => {
+        setShares(0);
     }
 
     return (
@@ -91,16 +176,20 @@ function ViewStockPage(props) {
                                 <Button
                                     style={styles.tradeComponent}
                                     title="Buy"
+                                    accessibilityLabel="Buy Stocks"
+                                    onPress={() => buyStockButton()}
                                 />
                             </View>
                             <View style={styles.tradeComponentContainer}>
                                 <Button
                                     style={styles.tradeComponent}
                                     title="Sell"
+                                    accessibilityLabel="Sell Stocks"
+                                    onPress={() => sellStockButton()}
                                 />
                             </View>
                         </View>
-                        <Text style={styles.currentOwnership}>Buying Power: ${props.portfolio.money}</Text>
+                        <Text style={styles.currentOwnership}>Buying Power: ${props.portfolio.money.toFixed(2)}</Text>
                     </View>
                 }
             </View>
@@ -225,4 +314,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect(mapStateToProps)(ViewStockPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ViewStockPage);
