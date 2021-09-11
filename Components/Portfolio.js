@@ -53,6 +53,14 @@ class PortfolioScreen extends Component {
                         }
                     </View>
                 </View>
+                <View style={styles.innerContainer}>
+                        <Text style={styles.title}>Your Shares</Text>
+                        <View style={styles.contentContainer}>
+                            {this.props.portfolio.stocks.length === 0 &&
+                                <Text style={styles.textInfo}>You currently don't own any shares.</Text>
+                            }
+                        </View>
+                </View>
             </View>
         );
     }
@@ -105,6 +113,9 @@ const styles = StyleSheet.create({
         textShadowColor: "#000",
         textShadowRadius: 5
     },
+    textInfo: {
+        textAlign: "center"
+    }
 });
 
 export default connect(mapStateToProps)(PortfolioScreen);
