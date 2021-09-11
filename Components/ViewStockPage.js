@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, View, Text, StyleSheet, Alert } from 'react-native';
 import { Image, Input, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import { Icon } from 'react-native-elements';
-import { buyStock, sellStock } from '../redux/ActionCreators';
+import { buyStock, sellStock, updateCache } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -14,6 +14,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
+    updateCache: symbol => updateCache(symbol),
     buyStock: (symbol, count, price) => buyStock(symbol, count, price),
     sellStock: (symbol, count, price) => sellStock(symbol, count, price)
 };
@@ -23,6 +24,10 @@ function ViewStockPage(props) {
     const { symbol } = route.params;
 
     const [shares, setShares] = useState(0);
+
+    useEffect(() => {
+        props.updateCache(symbol);
+    }, [navigation]);
 
     const profile = props.cache.profiles.filter(profile => profile.symbol === symbol)[0];
 

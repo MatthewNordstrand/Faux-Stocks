@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import ShareOwnershipInfoSmall from './ShareOwnershipInfoSmall';
+import { updateCache } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -11,7 +12,22 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = {
+    updateCache: symbol => updateCache(symbol)
+};
+
 class PortfolioScreen extends Component {
+    componentDidMount() {
+        this.props.navigation.addListener("focus", () => {
+            this.updateOwnedStocks();
+        });
+    }
+
+    updateOwnedStocks() {
+        const mapPortfolio = this.props.portfolio.stocks.map(stock => stock.symbol);
+        mapPortfolio.forEach(symbol => this.props.updateCache(symbol));
+    }
+
     render() {
         const renderStockInfo = ({item}) => {
             return <ShareOwnershipInfoSmall stock={item} navigation={this.props.navigation} />;
@@ -134,4 +150,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect(mapStateToProps)(PortfolioScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(PortfolioScreen);
