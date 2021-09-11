@@ -61,7 +61,7 @@ class PortfolioScreen extends Component {
 
         return(
             <View style={styles.container}>
-                <View style={styles.innerContainer}>
+                <View style={styles.innerContainerNoFlex}>
                     <Text style={styles.title}>Current Portfolio Value</Text>
                     <View style={styles.contentContainer}>
                         <Text style={styles.statDesc}>Total Value <Text style={styles.statText}>${totalValue.toFixed(2)}</Text></Text>
@@ -97,6 +97,16 @@ class PortfolioScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         padding: 5,
+        flex: 1,
+    },
+    innerContainerNoFlex: {
+        width: "95%",
+        marginBottom: 10,
+        backgroundColor: "#DADDE2",
+        alignSelf: "center",
+        borderColor: "#000",
+        borderWidth: 2,
+        borderRadius: 20,
     },
     innerContainer: {
         width: "95%",
@@ -106,13 +116,14 @@ const styles = StyleSheet.create({
         borderColor: "#000",
         borderWidth: 2,
         borderRadius: 20,
+        flex: 1,
     },
     contentContainer: {
         padding: 5,
     },
     sharesContentContainer: {
         padding: 5,
-        flexGrow: 1,
+        flex: 1,
     },
     title: {
         textAlign: "center",
