@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Loading from './Loading';
+import ShareOwnershipInfoSmall from './ShareOwnershipInfoSmall';
 
 const mapStateToProps = state => {
     return {
@@ -12,6 +13,10 @@ const mapStateToProps = state => {
 
 class PortfolioScreen extends Component {
     render() {
+        const renderStockInfo = ({item}) => {
+            return <ShareOwnershipInfoSmall stock={item} navigation={this.props.navigation} />;
+        };
+
         const mapCache = this.props.cache.profiles.map(stock => stock.symbol);
         const mapPortfolio = this.props.portfolio.stocks.map(stock => stock.symbol);
         const absent = mapPortfolio.filter(symbol => {
@@ -58,6 +63,13 @@ class PortfolioScreen extends Component {
                         <View style={styles.sharesContentContainer}>
                             {this.props.portfolio.stocks.length === 0 &&
                                 <Text style={styles.textInfo}>You currently don't own any shares.</Text>
+                            }
+                            {this.props.portfolio.stocks.length > 0 &&
+                                <FlatList
+                                    data={this.props.portfolio.stocks}
+                                    renderItem={renderStockInfo}
+                                    keyExtractor={item => item.symbol.toString()}
+                                />
                             }
                         </View>
                 </View>

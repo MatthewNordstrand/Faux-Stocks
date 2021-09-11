@@ -3,19 +3,20 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
-import { updateCache } from '../redux/ActionCreators';
+import { updateProfile } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
+        portfolio: state.portfolio,
         cache: state.cache
     };
 };
 
 const mapDispatchToProps = {
-    updateCache: symbol => updateCache(symbol)
+    updateProfile: symbol => updateProfile(symbol)
 };
 
-class CompanyInfoSmall extends Component {
+class ShareOwnershipInfoSmall extends Component {
     constructor(props) {
         super(props);
     }
@@ -24,7 +25,7 @@ class CompanyInfoSmall extends Component {
         const profile = this.props.cache.profiles.filter(profile => profile.symbol === this.props.stock.symbol)[0];
 
         if (!profile) {
-            this.props.updateCache(this.props.stock.symbol);
+            this.props.updateProfile(this.props.stock.symbol);
         }
     }
 
@@ -69,18 +70,21 @@ const styles = StyleSheet.create({
         margin: 5,
         padding: 5,
         flexDirection: "row",
+        borderRadius: 10,
     },
     containerGreen: {
         backgroundColor: "#BFFFBF",
         margin: 5,
         padding: 5,
         flexDirection: "row",
+        borderRadius: 10,
     },
     containerRed: {
         backgroundColor: "#FFBFBF",
         margin: 5,
         padding: 5,
         flexDirection: "row",
+        borderRadius: 10,
     },
     symbolText: {
         fontSize: 24,
@@ -110,4 +114,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompanyInfoSmall);
+export default connect(mapStateToProps, mapDispatchToProps)(ShareOwnershipInfoSmall);
