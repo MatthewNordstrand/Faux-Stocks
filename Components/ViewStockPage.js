@@ -21,6 +21,18 @@ function ViewStockPage(props) {
 
     const profile = props.cache.profiles.filter(profile => profile.symbol === symbol)[0];
 
+    let ownedStock = props.portfolio.stocks.filter(stock => stock.symbol === symbol)[0];
+
+    if (!ownedStock) {
+        ownedStock = {
+            symbol: symbol,
+            amount: 0,
+            cost: 0
+        };
+    }
+
+    const profit = (ownedStock.amount * profile.price) - ownedStock.cost;
+
     if (!profile) {
         return (
             <View style={styles.loadingContainer}>
@@ -60,8 +72,13 @@ function ViewStockPage(props) {
                 }
                 {profile.isActivelyTrading &&
                     <View style={styles.contentContainer}>
-                        <Text style={styles.currentOwnership}>Currently own: 0 ($0)</Text>
-                        <Text style={styles.currentOwnership}>Current Profit: $0</Text>
+                        <Text style={styles.currentOwnership}>Currently own: {ownedStock.amount} (${(ownedStock.amount * profile.price).toFixed(2)})</Text>
+                        {profit >= 0 &&
+                            <Text style={styles.currentOwnership}>Current Profit: ${profit.toFixed(2)}</Text>
+                        }
+                        {profit < 0 &&
+                            <Text style={styles.currentOwnership}>Current Loss: -${Math.abs(profit.toFixed(2))}</Text>
+                        }
                         <Input
                             style={styles.tradeComponent}
                             label={`Number of Shares (Value: $${shares * profile.price})`}
