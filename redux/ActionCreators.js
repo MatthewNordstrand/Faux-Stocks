@@ -129,3 +129,7 @@ export const sellStock = (symbol, count, price) => ({
         price
     }
 });
+
+export const resetData = () => ({
+    type: ActionTypes.SETTINGS_RESET_DATA
+});

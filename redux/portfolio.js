@@ -35,6 +35,9 @@ export const portfolio = (state = { money: 25000, stocks: [] }, action) => {
                 //If we don't own any stock anymore, don't re-add it to state.
                 return {...state, money: state.money + action.payload.price, stocks: [...state.stocks.filter(stock => stock.symbol !== action.payload.symbol)]};
             }
+        
+        case ActionTypes.SETTINGS_RESET_DATA:
+            return {...state, money: 25000, stocks: []};
 
         default:
             return state;
