@@ -72,7 +72,7 @@ export const addProfile = profileData => ({
 });
 
 export const updateStock = symbol => dispatch => {
-    return fetch(`${STOCK_URL}/historical-chart/1hour/${symbol}?apikey=${STOCK_KEY}`)
+    return fetch(`${STOCK_URL}/historical-chart/15min/${symbol}?apikey=${STOCK_KEY}`)
         .then(response => {
             if (response.ok) {
                 return response;
