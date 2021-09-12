@@ -189,7 +189,7 @@ function ViewStockPage(props) {
                             data={{
                                     datasets: [
                                         {
-                                            data: stock.stockData.slice(0, 120).map(stockData => stockData.close).reverse()
+                                            data: stock.stockData.slice(0, 40).map(stockData => stockData.close).reverse()
                                         }
                                     ]
                                 }}
