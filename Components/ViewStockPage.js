@@ -338,6 +338,7 @@ const styles = StyleSheet.create({
     descNotTraded: {
         backgroundColor: "red",
         textAlign: "center",
+        margin: 5,
     },
 
     //Trasing Panel
