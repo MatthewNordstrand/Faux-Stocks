@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView, View, Text, StyleSheet, Alert, Dimensions } from 'react-native';
 import { Image, Input, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Loading from './Loading';
+import Loading from '../Loading';
 import { Icon } from 'react-native-elements';
-import { buyStock, sellStock, updateCache } from '../redux/ActionCreators';
+import { buyStock, sellStock, updateCache } from '../../redux/ActionCreators';
 import { LineChart } from 'react-native-chart-kit';
 
 const mapStateToProps = state => {

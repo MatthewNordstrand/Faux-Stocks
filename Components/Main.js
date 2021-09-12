@@ -3,10 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon } from 'react-native-elements';
-import PortfolioScreen from './Portfolio';
-import BrowseScreen from './BrowseStocks';
-import ViewStockPage from './ViewStockPage';
-import SettingsPage from './SettingsPage';
+import PortfolioScreen from './Pages/Portfolio';
+import BrowseScreen from './Pages/BrowseStocks';
+import ViewStockPage from './Pages/ViewStockPage';
+import SettingsPage from './Pages/SettingsPage';
 
 const MainStack = createNativeStackNavigator();
 

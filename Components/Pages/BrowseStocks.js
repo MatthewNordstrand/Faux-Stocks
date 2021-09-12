@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { ScrollView, View, Text, StyleSheet, FlatList } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Loading from './Loading';
-import { searchQuery } from '../redux/ActionCreators';
-import CompanyInfoSmall from './CompanyInfoSmall';
+import Loading from '../Loading';
+import { searchQuery } from '../../redux/ActionCreators';
+import CompanyInfoSmall from '../CompanyInfoSmall';
 
 const mapStateToProps = state => {
     return {

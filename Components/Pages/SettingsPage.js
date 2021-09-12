@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { resetData } from '../redux/ActionCreators';
+import { resetData } from '../../redux/ActionCreators';
 
 const mapDispatchToProps = {
     resetData: () => resetData()

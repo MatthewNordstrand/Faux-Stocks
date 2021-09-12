@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import Loading from './Loading';
-import ShareOwnershipInfoSmall from './ShareOwnershipInfoSmall';
-import { updateProfile } from '../redux/ActionCreators';
+import Loading from '../Loading';
+import ShareOwnershipInfoSmall from '../ShareOwnershipInfoSmall';
+import { updateProfile } from '../../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
