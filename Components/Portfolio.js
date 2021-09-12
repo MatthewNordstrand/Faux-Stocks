@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import ShareOwnershipInfoSmall from './ShareOwnershipInfoSmall';
-import { updateCache } from '../redux/ActionCreators';
+import { updateProfile } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    updateCache: symbol => updateCache(symbol)
+    updateProfile: symbol => updateProfile(symbol)
 };
 
 class PortfolioScreen extends Component {
@@ -25,7 +25,7 @@ class PortfolioScreen extends Component {
 
     updateOwnedStocks() {
         const mapPortfolio = this.props.portfolio.stocks.map(stock => stock.symbol);
-        mapPortfolio.forEach(symbol => this.props.updateCache(symbol));
+        mapPortfolio.forEach(symbol => this.props.updateProfile(symbol));
     }
 
     render() {
