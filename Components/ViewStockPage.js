@@ -40,9 +40,7 @@ function ViewStockPage(props) {
             cost: 0
         };
     }
-
-    const profit = (ownedStock.amount * profile.price) - ownedStock.cost;
-
+    
     if (!profile) {
         return (
             <View style={styles.loadingContainer}>
@@ -50,6 +48,9 @@ function ViewStockPage(props) {
             </View>
         );
     }
+
+    const profit = (ownedStock.amount * profile.price) - ownedStock.cost;
+
 
     const buyStockButton = () => {
         const buyCost = shares * profile.price;
