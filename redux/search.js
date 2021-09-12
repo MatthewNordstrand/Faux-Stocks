@@ -10,6 +10,9 @@ export const search = (state = { isLoading: false, errMess: "Search above to see
 
         case ActionTypes.SEARCH_ERROR:
             return {...state, isLoading: false, errMess: action.payload};
+        
+        case ActionTypes.SEARCH_REMOVE:
+            return {...state, stocks: [...state.stocks.filter(stock => stock.symbol !== action.payload)]};
 
         default:
             return state;

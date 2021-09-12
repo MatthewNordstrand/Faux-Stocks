@@ -29,6 +29,17 @@ function ViewStockPage(props) {
         props.updateCache(symbol);
     }, [navigation]);
 
+    const error = props.cache.errors.filter(error => error.symbol === symbol)[0];
+
+    if (error) {
+        return (
+            <View style={styles.loadingContainer}>
+                <Text style={styles.errorText}>{error.message}</Text>
+                <Text style={styles.errorText}>:(</Text>
+            </View>
+        );
+    }
+
     const profile = props.cache.profiles.filter(profile => profile.symbol === symbol)[0];
 
     let ownedStock = props.portfolio.stocks.filter(stock => stock.symbol === symbol)[0];
@@ -226,7 +237,11 @@ const styles = StyleSheet.create({
     //Global Styles
     loadingContainer: {
         alignItems: "center",
+        justifyContent: "center",
         flex: 1,
+    },
+    errorText: {
+        textAlign: "center",
     },
     container: {
         padding: 5,

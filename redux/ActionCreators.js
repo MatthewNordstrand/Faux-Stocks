@@ -4,7 +4,7 @@ import { STOCK_KEY, STOCK_URL } from '../shared/keys';
 export const searchQuery = query => dispatch => {
     dispatch(searchLoading());
 
-    return fetch(`${STOCK_URL}/search?query=${query}&limit=10&exchange=NASDAQ&apikey=${STOCK_KEY}`)
+    return fetch(`${STOCK_URL}/search?query=${query}&limit=16&exchange=NASDAQ&apikey=${STOCK_KEY}`)
         .then(response => {
             if (response.ok) {
                 return response;
@@ -59,12 +59,29 @@ export const updateProfile = symbol => dispatch => {
         })
     .then(response => response.json())
     .then(profile => dispatch(addProfile(profile[0])))
-    .catch(error => console.log(`ERROR(updateProfile): ${error.message}`));
+    .catch(error => {
+        console.log(`ERROR(updateProfile): ${error.message}`);
+        dispatch(cacheError(symbol, "Error getting stock information. This is usually because the API has returned an empty JSON object."));
+        dispatch(searchRemove(symbol));
+    });
 };
 
 export const addProfile = profileData => ({
     type: ActionTypes.CACHE_ADD_PROFILE,
     payload: profileData
+});
+
+export const cacheError = (symbol, message) => ({
+    type: ActionTypes.CACHE_ERROR,
+    payload: {
+        symbol,
+        message
+    }
+});
+
+export const searchRemove = (symbol) => ({
+    type: ActionTypes.SEARCH_REMOVE,
+    payload: symbol
 });
 
 export const buyStock = (symbol, count, price) => ({
