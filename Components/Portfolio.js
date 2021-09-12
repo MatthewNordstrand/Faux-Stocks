@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     innerContainerNoFlex: {
         width: "95%",
         marginBottom: 10,
-        backgroundColor: "#DADDE2",
         alignSelf: "center",
         borderColor: "#000",
         borderWidth: 2,
@@ -111,7 +110,6 @@ const styles = StyleSheet.create({
     innerContainer: {
         width: "95%",
         marginBottom: 10,
-        backgroundColor: "#DADDE2",
         alignSelf: "center",
         borderColor: "#000",
         borderWidth: 2,

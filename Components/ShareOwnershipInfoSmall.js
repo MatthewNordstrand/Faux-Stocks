@@ -68,21 +68,21 @@ class ShareOwnershipInfoSmall extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#FFFFBF",
         margin: 5,
         paddingHorizontal: 5,
         flexDirection: "row",
         borderRadius: 10,
     },
     containerGreen: {
-        backgroundColor: "#00FF00",
+        backgroundColor: "#BFFFBF",
         margin: 5,
         paddingHorizontal: 5,
         flexDirection: "row",
         borderRadius: 10,
     },
     containerRed: {
-        backgroundColor: "#FF0000",
+        backgroundColor: "#FFBFBF",
         margin: 5,
         paddingHorizontal: 5,
         flexDirection: "row",
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "flex-end",
         flexDirection: "column",
-        backgroundColor: "#00000050",
+        backgroundColor: "#00000010",
         padding: 5,
     },
     priceTextUp: {
