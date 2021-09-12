@@ -10,7 +10,7 @@ const mapStateToProps = state => {
     };
 };
 
-function WeeklyPerformanceChart({symbol, width, height, stocks}) {
+function WeeklyPerformanceChart({symbol, width, height, showLabels = true, stocks}) {
     const chartConfig = {
         backgroundGradientFrom: "#FFFFFF",
         backgroundGradientFromOpacity: 0,
@@ -18,7 +18,7 @@ function WeeklyPerformanceChart({symbol, width, height, stocks}) {
         backgroundGradientToOpacity: 0,
         color: () => `rgba(0, 128, 255, 0.5)`,
         strokeWidth: 2,
-        useShadowColorFromDataset: false
+        useShadowColorFromDataset: false,
     };
 
     const stock = stocks.filter(stock => stock.symbol === symbol)[0];
@@ -30,7 +30,9 @@ function WeeklyPerformanceChart({symbol, width, height, stocks}) {
             }
             {stock &&
                 <>
-                    <Text style={styles.chartTitle}>Weekly Performance</Text>
+                    {showLabels &&
+                        <Text style={styles.chartTitle}>Weekly Performance</Text>
+                    }
                     <LineChart
                         data={{
                                 datasets: [
@@ -45,6 +47,7 @@ function WeeklyPerformanceChart({symbol, width, height, stocks}) {
                         bezier
                         withVerticalLines={false}
                         withDots={false}
+                        withHorizontalLabels={showLabels}
                     />
                 </>
             }

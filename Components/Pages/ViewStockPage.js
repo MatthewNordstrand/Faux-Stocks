@@ -274,17 +274,6 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
     },
 
-    //Chart Styles
-    chartContainer: {
-        alignItems: "center",
-        paddingTop: 5,
-        paddingBottom: 5,
-    },
-    chartTitle: {
-        fontWeight: "bold",
-        color: "#0080FF"
-    },
-
     //Stock Detail Styles
     largeSymbol: {
         fontSize: 48,
