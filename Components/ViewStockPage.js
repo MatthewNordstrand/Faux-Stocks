@@ -68,7 +68,7 @@ function ViewStockPage(props) {
         backgroundGradientFromOpacity: 0,
         backgroundGradientTo: "#FFFFFF",
         backgroundGradientToOpacity: 0,
-        color: (opacity = 1) => `rgba(0, 128, 255, ${opacity})`,
+        color: () => `rgba(0, 128, 255, 0.5)`,
         strokeWidth: 2,
         useShadowColorFromDataset: false
     };
@@ -184,12 +184,12 @@ function ViewStockPage(props) {
                 }
                 {stock &&
                     <>
-                        <Text style={styles.chartTitle}>10 Hour Performance</Text>
+                        <Text style={styles.chartTitle}>Weekly Performance</Text>
                         <LineChart
                             data={{
                                     datasets: [
                                         {
-                                            data: stock.stockData.slice(0, 10).map(stockData => stockData.close).reverse()
+                                            data: stock.stockData.slice(0, 120).map(stockData => stockData.close).reverse()
                                         }
                                     ]
                                 }}
@@ -197,6 +197,8 @@ function ViewStockPage(props) {
                             height={200}
                             chartConfig={chartConfig}
                             bezier
+                            withVerticalLines={false}
+                            withDots={false}
                         />
                     </>
                 }
