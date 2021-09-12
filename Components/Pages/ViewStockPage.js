@@ -6,6 +6,7 @@ import Loading from '../Loading';
 import { Icon } from 'react-native-elements';
 import { buyStock, sellStock, updateCache } from '../../redux/ActionCreators';
 import { LineChart } from 'react-native-chart-kit';
+import WeeklyPerformanceChart from '../StatPanels/WeeklyPerformanceChart';
 
 const mapStateToProps = state => {
     return {
@@ -60,18 +61,6 @@ function ViewStockPage(props) {
             </View>
         );
     }
-
-    const stock = props.cache.stocks.filter(stock => stock.symbol === symbol)[0];
-    const chartWidth = Dimensions.get("window").width;
-    const chartConfig = {
-        backgroundGradientFrom: "#FFFFFF",
-        backgroundGradientFromOpacity: 0,
-        backgroundGradientTo: "#FFFFFF",
-        backgroundGradientToOpacity: 0,
-        color: () => `rgba(0, 128, 255, 0.5)`,
-        strokeWidth: 2,
-        useShadowColorFromDataset: false
-    };
 
     const profit = (ownedStock.amount * profile.price) - ownedStock.cost;
 
@@ -180,31 +169,7 @@ function ViewStockPage(props) {
             </View>
 
             {/*Stock Chart*/}
-            <View style={styles.chartContainer}>
-                {!stock &&
-                    <Loading />
-                }
-                {stock &&
-                    <>
-                        <Text style={styles.chartTitle}>Weekly Performance</Text>
-                        <LineChart
-                            data={{
-                                    datasets: [
-                                        {
-                                            data: stock.stockData.slice(0, 160).map(stockData => stockData.close).reverse()
-                                        }
-                                    ]
-                                }}
-                            width={chartWidth}
-                            height={200}
-                            chartConfig={chartConfig}
-                            bezier
-                            withVerticalLines={false}
-                            withDots={false}
-                        />
-                    </>
-                }
-            </View>
+            <WeeklyPerformanceChart symbol={symbol} width={Dimensions.get("window").width} height={200} />
 
             {/*Stock Trading*/}
             <View style={styles.innerContainer}>

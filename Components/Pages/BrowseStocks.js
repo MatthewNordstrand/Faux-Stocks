@@ -4,7 +4,7 @@ import { Input, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from '../Loading';
 import { searchQuery } from '../../redux/ActionCreators';
-import CompanyInfoSmall from '../CompanyInfoSmall';
+import CompanyInfoSmall from '../StockInfoLabels/CompanyInfoSmall';
 
 const mapStateToProps = state => {
     return {

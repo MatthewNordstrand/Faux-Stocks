@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Loading from './Loading';
-import { updateProfile } from '../redux/ActionCreators';
+import Loading from '../Loading';
+import { updateProfile } from '../../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
-        portfolio: state.portfolio,
         cache: state.cache
     };
 };
@@ -16,7 +15,7 @@ const mapDispatchToProps = {
     updateProfile: symbol => updateProfile(symbol)
 };
 
-class ShareOwnershipInfoSmall extends Component {
+class CompanyInfoSmall extends Component {
     constructor(props) {
         super(props);
     }
@@ -33,33 +32,31 @@ class ShareOwnershipInfoSmall extends Component {
         const { navigation } = this.props;
 
         const profile = this.props.cache.profiles.filter(profile => profile.symbol === this.props.stock.symbol)[0];
-        const ownStock = this.props.portfolio.stocks.filter(stock => stock.symbol === this.props.stock.symbol)[0];
-
-        const value = (ownStock.amount * profile.price).toFixed(2);
-        const profit = ((ownStock.amount * profile.price) - ownStock.cost).toFixed(2);
 
         return (
             <TouchableOpacity
                 style={
-                    profit > 0 ? styles.containerGreen : profit < 0 ? styles.containerRed : styles.container
+                    profile ? (profile.changes >= 0 ? styles.containerGreen : styles.containerRed) : styles.container
                 }
-                onPress={() => navigation.navigate("View Stock", {symbol: profile.symbol, stockName: profile.companyName})}
+                onPress={() => navigation.navigate("View Stock", {symbol: this.props.stock.symbol, stockName: this.props.stock.name})}
             >
                 <View style={styles.nameContainer}>
                     <Text style={styles.symbolText}>{this.props.stock.symbol}</Text>
-                    <Text>{profile.companyName}</Text>
-                </View>
-                <View style={styles.statsContainerOther}>
-                    <Text>{ownStock.amount}</Text>
-                    <Text>Amount</Text>
+                    <Text style={styles.nameText}>{this.props.stock.name}</Text>
                 </View>
                 <View style={styles.statsContainer}>
-                    <Text>${value}</Text>
-                    <Text>Value</Text>
-                </View>
-                <View style={styles.statsContainerOther}>
-                    <Text>${profit}</Text>
-                    <Text>{profit >= 0 ? "Profit" : "Loss"}</Text>
+                    {profile &&
+                        <>
+                            <Icon
+                                type="ionicon"
+                                name={profile.changes >= 0 ? "caret-up" : "caret-down"}
+                                color={profile.changes >= 0 ? "#00DD00" : "#DD0000"}
+                                size={20}
+                            />
+                            <Text style={profile.changes >= 0 ? styles.priceTextUp : styles.priceTextDown}>{profile.price}</Text>
+                        </>
+                    }
+                    {!profile && <Loading showText={false} />}
                 </View>
             </TouchableOpacity>
         );
@@ -68,25 +65,22 @@ class ShareOwnershipInfoSmall extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#FFFFBF",
+        backgroundColor: "#FFFFFF",
         margin: 5,
-        paddingHorizontal: 5,
+        padding: 5,
         flexDirection: "row",
-        borderRadius: 10,
     },
     containerGreen: {
         backgroundColor: "#BFFFBF",
         margin: 5,
-        paddingHorizontal: 5,
+        padding: 5,
         flexDirection: "row",
-        borderRadius: 10,
     },
     containerRed: {
         backgroundColor: "#FFBFBF",
         margin: 5,
-        paddingHorizontal: 5,
+        padding: 5,
         flexDirection: "row",
-        borderRadius: 10,
     },
     symbolText: {
         fontSize: 24,
@@ -96,22 +90,13 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     nameContainer: {
-        flex: 1,
+        flex: 2,
     },
     statsContainer: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "flex-end",
-        flexDirection: "column",
-        padding: 5,
-    },
-    statsContainerOther: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "flex-end",
-        flexDirection: "column",
-        backgroundColor: "#00000010",
-        padding: 5,
+        justifyContent: "flex-end",
+        alignItems: "center",
+        flexDirection: "row",
     },
     priceTextUp: {
         fontSize: 18,
@@ -125,4 +110,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShareOwnershipInfoSmall);
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyInfoSmall);
