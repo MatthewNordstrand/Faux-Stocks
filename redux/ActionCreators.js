@@ -39,7 +39,7 @@ export const searchFailed = errMess => ({
 
 export const updateCache = symbol => dispatch => {
     dispatch(updateProfile(symbol));
-    //dispatch(updateStock(symbol));
+    dispatch(updateStock(symbol));
 };
 
 export const updateProfile = symbol => dispatch => {
@@ -69,6 +69,34 @@ export const updateProfile = symbol => dispatch => {
 export const addProfile = profileData => ({
     type: ActionTypes.CACHE_ADD_PROFILE,
     payload: profileData
+});
+
+export const updateStock = symbol => dispatch => {
+    return fetch(`${STOCK_URL}/historical-chart/1hour/${symbol}?apikey=${STOCK_KEY}`)
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        })
+    .then(response => response.json())
+    .then(stock => dispatch(addStock(symbol, stock)))
+    .catch(error => console.log(`ERROR(updateStock): ${error.message}`));
+};
+
+export const addStock = (symbol, stockData) => ({
+    type: ActionTypes.CACHE_ADD_STOCK,
+    payload: {
+        symbol,
+        stockData
+    }
 });
 
 export const cacheError = (symbol, message) => ({

@@ -62,13 +62,6 @@ function ViewStockPage(props) {
     }
 
     const stock = props.cache.stocks.filter(stock => stock.symbol === symbol)[0];
-    const data = {
-        datasets: [
-            {
-                data: [20, 45, 28, 80, 99, 43]
-            }
-        ]
-    }
     const chartWidth = Dimensions.get("window").width;
     const chartConfig = {
         backgroundGradientFrom: "#FFFFFF",
@@ -190,13 +183,22 @@ function ViewStockPage(props) {
                     <Loading />
                 }
                 {stock &&
-                    <LineChart
-                        data={data}
-                        width={chartWidth}
-                        height={200}
-                        chartConfig={chartConfig}
-                        bezier
-                    />
+                    <>
+                        <Text style={styles.chartTitle}>10 Hour Performance</Text>
+                        <LineChart
+                            data={{
+                                    datasets: [
+                                        {
+                                            data: stock.stockData.slice(0, 10).map(stockData => stockData.close).reverse()
+                                        }
+                                    ]
+                                }}
+                            width={chartWidth}
+                            height={200}
+                            chartConfig={chartConfig}
+                            bezier
+                        />
+                    </>
                 }
             </View>
 
@@ -291,11 +293,6 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 20,
     },
-    chartContainer: {
-        alignItems: "center",
-        paddingTop: 5,
-        paddingBottom: 5,
-    },
     contentContainer: {
         padding: 5,
     },
@@ -306,6 +303,17 @@ const styles = StyleSheet.create({
         backgroundColor: "#B1BDC5",
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
+    },
+
+    //Chart Styles
+    chartContainer: {
+        alignItems: "center",
+        paddingTop: 5,
+        paddingBottom: 5,
+    },
+    chartTitle: {
+        fontWeight: "bold",
+        color: "#0080FF"
     },
 
     //Stock Detail Styles

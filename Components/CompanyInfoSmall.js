@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
-import { updateCache } from '../redux/ActionCreators';
+import { updateProfile } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    updateCache: symbol => updateCache(symbol)
+    updateProfile: symbol => updateProfile(symbol)
 };
 
 class CompanyInfoSmall extends Component {
@@ -24,7 +24,7 @@ class CompanyInfoSmall extends Component {
         const profile = this.props.cache.profiles.filter(profile => profile.symbol === this.props.stock.symbol)[0];
 
         if (!profile) {
-            this.props.updateCache(this.props.stock.symbol);
+            this.props.updateProfile(this.props.stock.symbol);
         }
     }
 
