@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, View, Text, StyleSheet, Alert } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, Alert, Dimensions } from 'react-native';
 import { Image, Input, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import { Icon } from 'react-native-elements';
 import { buyStock, sellStock, updateCache } from '../redux/ActionCreators';
+import { LineChart } from 'react-native-chart-kit';
 
 const mapStateToProps = state => {
     return {
@@ -59,6 +60,25 @@ function ViewStockPage(props) {
             </View>
         );
     }
+
+    const stock = props.cache.stocks.filter(stock => stock.symbol === symbol)[0];
+    const data = {
+        datasets: [
+            {
+                data: [20, 45, 28, 80, 99, 43]
+            }
+        ]
+    }
+    const chartWidth = Dimensions.get("window").width;
+    const chartConfig = {
+        backgroundGradientFrom: "#FFFFFF",
+        backgroundGradientFromOpacity: 0,
+        backgroundGradientTo: "#FFFFFF",
+        backgroundGradientToOpacity: 0,
+        color: (opacity = 1) => `rgba(0, 128, 255, ${opacity})`,
+        strokeWidth: 2,
+        useShadowColorFromDataset: false
+    };
 
     const profit = (ownedStock.amount * profile.price) - ownedStock.cost;
 
@@ -164,6 +184,22 @@ function ViewStockPage(props) {
                 </View>
             </View>
 
+            {/*Stock Chart*/}
+            <View style={styles.chartContainer}>
+                {!stock &&
+                    <Loading />
+                }
+                {stock &&
+                    <LineChart
+                        data={data}
+                        width={chartWidth}
+                        height={200}
+                        chartConfig={chartConfig}
+                        bezier
+                    />
+                }
+            </View>
+
             {/*Stock Trading*/}
             <View style={styles.innerContainer}>
                 <Text style={styles.title}>Trade {profile.symbol}</Text>
@@ -254,6 +290,11 @@ const styles = StyleSheet.create({
         borderColor: "#000",
         borderWidth: 2,
         borderRadius: 20,
+    },
+    chartContainer: {
+        alignItems: "center",
+        paddingTop: 5,
+        paddingBottom: 5,
     },
     contentContainer: {
         padding: 5,
