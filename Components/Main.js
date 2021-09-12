@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements';
 import PortfolioScreen from './Portfolio';
 import BrowseScreen from './BrowseStocks';
 import ViewStockPage from './ViewStockPage';
+import SettingsPage from './SettingsPage';
 
 const MainStack = createNativeStackNavigator();
 
@@ -33,6 +34,8 @@ function TabNavigation() {
                         iconName = focused ? "bar-chart" : "bar-chart-outline";
                     } else if (route.name === "Browse") {
                         iconName = focused ? "search" : "search-outline";
+                    } else if (route.name === "Settings") {
+                        iconName = focused ? "settings" : "settings-outline"
                     }
 
                     return <Icon name={iconName} type="ionicon" color={color} size={size} />
@@ -40,6 +43,7 @@ function TabNavigation() {
             })}
         >
             <Tabs.Screen name="Portfolio" component={PortfolioScreen} />
+            <Tabs.Screen name="Settings" component={SettingsPage} />
             <Tabs.Screen name="Browse" component={BrowseScreen} />
         </Tabs.Navigator>
     );
