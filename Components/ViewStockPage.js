@@ -131,6 +131,8 @@ function ViewStockPage(props) {
                 ],
                 { cancelable: false }
             );
+
+            return;
         }
 
         Alert.alert(
