@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         color: "#0080FF"
     },
     chartNoPadding: {
-        paddingRight: 0,
+        paddingRight: 5,
     },
     chart: {
 
