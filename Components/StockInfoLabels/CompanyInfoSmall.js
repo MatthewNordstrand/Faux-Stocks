@@ -55,7 +55,7 @@ class CompanyInfoSmall extends Component {
                                 size={20}
                             />
                             <Text style={profile.changes >= 0 ? styles.priceTextUp : styles.priceTextDown}>{profile.price}</Text>
-                            <WeeklyPerformanceChart symbol={this.props.stock.symbol} width={75} height={50} showLabels={false} showLoad={false} />
+                            <WeeklyPerformanceChart symbol={this.props.stock.symbol} width={75} height={50} showLabels={false} showLoadText={false} />
                         </>
                     }
                     {!profile && <Loading showText={false} />}

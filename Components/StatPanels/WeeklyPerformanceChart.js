@@ -10,7 +10,7 @@ const mapStateToProps = state => {
     };
 };
 
-function WeeklyPerformanceChart({symbol, width, height, showLabels = true, showLoad = true, stocks}) {
+function WeeklyPerformanceChart({symbol, width, height, showLabels = true, showLoadText = true, stocks}) {
     const chartConfig = {
         backgroundGradientFrom: "#FFFFFF",
         backgroundGradientFromOpacity: 0,
@@ -25,8 +25,8 @@ function WeeklyPerformanceChart({symbol, width, height, showLabels = true, showL
 
     return (
         <View style={styles.chartContainer}>
-            {!stock && showLoad &&
-                <Loading />
+            {!stock &&
+                <Loading showText={showLoadText} />
             }
             {stock &&
                 <>
