@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Loading from '../Loading';
 import { Icon } from 'react-native-elements';
 import { buyStock, sellStock, updateCache } from '../../redux/ActionCreators';
-import { LineChart } from 'react-native-chart-kit';
 import WeeklyPerformanceChart from '../StatPanels/WeeklyPerformanceChart';
 
 const mapStateToProps = state => {
