@@ -56,7 +56,7 @@ class ShareOwnershipInfoSmall extends Component {
                     <Text>Value</Text>
                 </View>
                 <View style={styles.statsContainerOther}>
-                    <Text>${profit}</Text>
+                    <Text>${Math.abs(profit).toFixed(2)}</Text>
                     <Text>{profit >= 0 ? "Profit" : "Loss"}</Text>
                 </View>
             </TouchableOpacity>
