@@ -66,12 +66,9 @@ class PortfolioScreen extends Component {
                     <View style={styles.contentContainer}>
                         <Text style={styles.statDesc}>Total Value <Text style={styles.statText}>${totalValue.toFixed(2)}</Text></Text>
                         <Text style={styles.statDesc}>Buying Power <Text style={styles.statText}>${this.props.portfolio.money.toFixed(2)}</Text></Text>
-                        {totalProfit > 0 &&
-                            <Text style={styles.statDesc}>Totoal Profit <Text style={styles.statTextGreen}>+${totalProfit.toFixed(2)}</Text></Text>
-                        }
-                        {totalProfit < 0 &&
-                            <Text style={styles.statDesc}>Totoal Loss <Text style={styles.statTextRed}>-${Math.abs(totalProfit).toFixed(2)}</Text></Text>
-                        }
+                        <Text style={styles.statDesc}>
+                            Total {totalProfit >= 0 ? "Profit" : "Loss"}
+                        <Text style={totalProfit >= 0 ? styles.statTextGreen : styles.statTextRed}> ${Math.abs(totalProfit).toFixed(2)}</Text></Text>
                     </View>
                 </View>
                 <View style={styles.innerContainer}>
