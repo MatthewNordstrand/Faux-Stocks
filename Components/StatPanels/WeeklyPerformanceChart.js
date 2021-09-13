@@ -10,7 +10,7 @@ const mapStateToProps = state => {
     };
 };
 
-function WeeklyPerformanceChart({symbol, width, height, showLabels = true, stocks}) {
+function WeeklyPerformanceChart({symbol, width, height, showLabels = true, showLoad = true, stocks}) {
     const chartConfig = {
         backgroundGradientFrom: "#FFFFFF",
         backgroundGradientFromOpacity: 0,
@@ -25,7 +25,7 @@ function WeeklyPerformanceChart({symbol, width, height, showLabels = true, stock
 
     return (
         <View style={styles.chartContainer}>
-            {!stock &&
+            {!stock && showLoad &&
                 <Loading />
             }
             {stock &&
@@ -34,6 +34,7 @@ function WeeklyPerformanceChart({symbol, width, height, showLabels = true, stock
                         <Text style={styles.chartTitle}>Weekly Performance</Text>
                     }
                     <LineChart
+                        style={showLabels ? styles.chart : styles.chartNoPadding}
                         data={{
                                 datasets: [
                                     {
@@ -48,6 +49,7 @@ function WeeklyPerformanceChart({symbol, width, height, showLabels = true, stock
                         withVerticalLines={false}
                         withDots={false}
                         withHorizontalLabels={showLabels}
+                        withHorizontalLines={showLabels}
                     />
                 </>
             }
@@ -65,6 +67,12 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#0080FF"
     },
+    chartNoPadding: {
+        paddingRight: 0,
+    },
+    chart: {
+
+    }
 });
 
 export default connect(mapStateToProps)(WeeklyPerformanceChart);

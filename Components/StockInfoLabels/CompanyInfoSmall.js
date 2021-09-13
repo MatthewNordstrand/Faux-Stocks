@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Loading from '../Loading';
-import { updateProfile } from '../../redux/ActionCreators';
+import { updateCache } from '../../redux/ActionCreators';
+import WeeklyPerformanceChart from '../StatPanels/WeeklyPerformanceChart';
 
 const mapStateToProps = state => {
     return {
@@ -12,7 +13,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    updateProfile: symbol => updateProfile(symbol)
+    updateCache: symbol => updateCache(symbol)
 };
 
 class CompanyInfoSmall extends Component {
@@ -24,7 +25,7 @@ class CompanyInfoSmall extends Component {
         const profile = this.props.cache.profiles.filter(profile => profile.symbol === this.props.stock.symbol)[0];
 
         if (!profile) {
-            this.props.updateProfile(this.props.stock.symbol);
+            this.props.updateCache(this.props.stock.symbol);
         }
     }
 
@@ -54,6 +55,7 @@ class CompanyInfoSmall extends Component {
                                 size={20}
                             />
                             <Text style={profile.changes >= 0 ? styles.priceTextUp : styles.priceTextDown}>{profile.price}</Text>
+                            <WeeklyPerformanceChart symbol={this.props.stock.symbol} width={75} height={50} showLabels={false} showLoad={false} />
                         </>
                     }
                     {!profile && <Loading showText={false} />}
