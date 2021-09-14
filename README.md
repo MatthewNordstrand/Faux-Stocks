@@ -1,7 +1,7 @@
 # Faux-Stocks
-Faux Stocks is a stock trading game that that uses real-world information from real stocks to buy and sell imaginary versions of these same stocks.
+Faux Stocks is a stock trading game that that uses real-world information from real stocks to buy and sell imaginary versions of the same stocks.
 
-I wanted to create this app because I am personally fascinated by the stock market and wanted to interact with a Stock API in an interesting. A stock game seemed like a good choice.
+I wanted to create this app because I am personally fascinated by the stock market and wanted to interact with a Stock API in an interesting way. A stock game seemed like a good choice.
 
 ## Technologies Used
 
@@ -29,7 +29,7 @@ I wanted to create this app because I am personally fascinated by the stock mark
 
 [Weelkly Performance Chart Component](https://github.com/MatthewNordstrand/Faux-Stocks/blob/master/Components/StatPanels/WeeklyPerformanceChart.js) - The component that draws all of the charts I am using in the app.
 
-[Stock Details Page](https://github.com/MatthewNordstrand/Faux-Stocks/blob/master/Components/Pages/ViewStockPage.js) - This component gets all of the stock details from the redux store, and if it doesn's exist, it creates a redux-thunked request for the data.
+[Stock Details Page](https://github.com/MatthewNordstrand/Faux-Stocks/blob/master/Components/Pages/ViewStockPage.js) - This component gets all of the stock details from the redux store, and if it doesnt's exist, it creates a redux-thunked request for the data.
 
 [Redux Action Creators](https://github.com/MatthewNordstrand/Faux-Stocks/blob/master/redux/ActionCreators.js) - It requires a lot of Redux Actions to allow an API-driven app to function.
 
@@ -37,7 +37,7 @@ I wanted to create this app because I am personally fascinated by the stock mark
 
 ## Screenshots
 
-One thing that I would like to note are that the graphs from the first and the second screenshot are the exact same graph. I just change a couple of props and I can re-use it as a small graph to give a preview of stock performance on the search page.
+One thing that I would like to note are that the graphs from the first and the second screenshot are the exact same component. I just change a couple of props and I can re-use it as a small graph to give a preview of stock performance on the search page or a large gragh on the stock details pages.
 
 ### Stock Details Page
 ![Example of Stock Details Page](https://www.mattnordstrand.com/res/projects/fauxstocks/1.png)
