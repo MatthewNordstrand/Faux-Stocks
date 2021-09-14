@@ -43,7 +43,7 @@ One thing that I would like to note are that the graphs from the first and the s
 ![Example of Stock Details Page](https://www.mattnordstrand.com/res/projects/fauxstocks/1.png)
 
 ### Stock Search Page
-![Stock Search Page](https://www.mattnordstrand.com/res/projects/fauxstocks/2.png)
+![Stock Search Page](https://www.mattnordstrand.com/res/projects/fauxstocks/3.png)
 
 ### Portfolio Details Page
 ![Portfolio Details Page](https://www.mattnordstrand.com/res/projects/fauxstocks/2.png)
