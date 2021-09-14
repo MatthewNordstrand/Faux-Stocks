@@ -72,7 +72,7 @@ function ViewStockPage(props) {
         if (buyCost > props.portfolio.money) {
             Alert.alert(
                 "Not Enough Buying Power",
-                `You don't have enough buying power to buy ${shares} stocks. You have $${props.portfolio.money} and you need $${buyCost}.`,
+                `You don't have enough buying power to buy ${shares} stocks. You have $${props.portfolio.money.toFixed(2)} and you need $${buyCost.toFixed(2)}.`,
                 [
                     {
                         text: "Ok"
@@ -86,7 +86,7 @@ function ViewStockPage(props) {
 
         Alert.alert(
             "Buy Stock?",
-            `Are you sure you want to buy ${shares} shares of ${symbol} for $${buyCost}?`,
+            `Are you sure you want to buy ${shares} shares of ${symbol} for $${buyCost.toFixed(2)}?`,
             [
                 {
                     text: "Yes",
@@ -125,7 +125,7 @@ function ViewStockPage(props) {
 
         Alert.alert(
             "Sell Stock?",
-            `Are you sure you want to sell ${shares} shares of ${symbol} for $${sellCost}?`,
+            `Are you sure you want to sell ${shares} shares of ${symbol} for $${sellCost.toFixed(2)}?`,
             [
                 {
                     text: "Yes",
@@ -153,7 +153,7 @@ function ViewStockPage(props) {
                 <View style={styles.contentContainer}>
                     <Text style={styles.largeSymbol}>{profile.symbol}</Text>
                     <View style={styles.priceContainer}>
-                        <Text style={styles.price}>${profile.price}</Text>
+                        <Text style={styles.price}>${profile.price.toFixed(2)}</Text>
                         <Text style={styles.changes}>
                                 <Icon
                                     type="ionicon"
