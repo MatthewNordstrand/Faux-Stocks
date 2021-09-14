@@ -48,16 +48,18 @@ class ShareOwnershipInfoSmall extends Component {
                     <Text>{profile.companyName}</Text>
                 </View>
                 <View style={styles.statsContainerOther}>
-                    <Text>{ownStock.amount}</Text>
-                    <Text>Amount</Text>
+                    <View style={styles.statsContainerSmall}>
+                        <Text style={styles.statsTextBold}>Shares</Text>
+                        <Text style={styles.statsText}>{ownStock.amount}</Text>
+                    </View>
+                    <View style={styles.statsContainerSmall}>
+                        <Text style={styles.statsTextBold}>Value</Text>
+                        <Text style={styles.statsText}>${value}</Text>
+                    </View>
                 </View>
                 <View style={styles.statsContainer}>
-                    <Text>${value}</Text>
-                    <Text>Value</Text>
-                </View>
-                <View style={styles.statsContainerOther}>
-                    <Text>${Math.abs(profit).toFixed(2)}</Text>
-                    <Text>{profit >= 0 ? "Profit" : "Loss"}</Text>
+                    <Text style={styles.statsTextBold}>{profit >= 0 ? "Profit" : "Loss"}</Text>
+                    <Text style={styles.statsText}>${Math.abs(profit).toFixed(2)}</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     nameContainer: {
-        flex: 1,
+        flex: 2,
     },
     statsContainer: {
         flex: 1,
@@ -111,6 +113,9 @@ const styles = StyleSheet.create({
         backgroundColor: "#00000010",
         padding: 5,
     },
+    statsContainerSmall: {
+        margin: 2,
+    },
     priceTextUp: {
         fontSize: 18,
         fontWeight: "bold",
@@ -121,6 +126,14 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#DD0000",
     },
+    statsText: {
+        fontStyle: "italic",
+        textAlign: "right",
+    },
+    statsTextBold: {
+        fontWeight: "bold",
+        textAlign: "right",
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShareOwnershipInfoSmall);
