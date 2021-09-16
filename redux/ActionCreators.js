@@ -4,7 +4,7 @@ import { STOCK_KEY, STOCK_URL } from '../shared/keys';
 export const searchQuery = query => dispatch => {
     dispatch(searchLoading());
 
-    return fetch(`${STOCK_URL}/search?query=${query}&limit=16&exchange=NASDAQ&apikey=${STOCK_KEY}`)
+    return fetch(`${STOCK_URL}/search?query=${query}&limit=11&exchange=NASDAQ&apikey=${STOCK_KEY}`)
         .then(response => {
             if (response.ok) {
                 return response;
