@@ -17,7 +17,7 @@ function WeeklyPerformanceChart({symbol, width, height, showLabels = true, showL
         backgroundGradientTo: "#FFFFFF",
         backgroundGradientToOpacity: 0,
         color: () => `rgba(0, 128, 255, 0.5)`,
-        strokeWidth: 2,
+        strokeWidth: showLabels ? 2 : 1,
         useShadowColorFromDataset: false,
     };
 
