@@ -15,7 +15,7 @@ router.post('/login', (req, res) => {
 
 router.post('/register', (req, res) => {
     UserData.register(
-        new UserData({ username: req.body.username }),
+        new UserData({ username: req.body.username, email: req.body.email }),
         req.body.password,
         (err, user) => {
             if (err) {
